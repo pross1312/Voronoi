@@ -1,3 +1,5 @@
+{.passc: "-Iraylib-5.5_linux_amd64/include", passl: "-Lraylib-5.5_linux_amd64/lib -lraylib -lm".}
+const rl_path {.strdefine.} = "../raylib-5.5_linux_amd64/"
 const rl_header {.strdefine.} = "<raylib.h>"
 type
     MouseButton* {.size: sizeof(cint).} = enum

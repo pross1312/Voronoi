@@ -1,4 +1,5 @@
 import raylib
+import x11/xlib
 
 proc `/`(x: uint8, y: cfloat): cfloat =
     return cfloat(x)/y
@@ -8,6 +9,20 @@ proc color_to_vec4(color: Color): Vector4 =
     return Vector4(x: color.r/255.0, y: color.g/255.0, z: color.b/255.0, w: color.a/255.0)
 
 when isMainModule:
+
+    let display = XOpenDisplay(nil)
+    if display == nil:
+        echo "NIL"
+    else:
+        echo display.repr
+    # let window = XDefaultRootWindow(display)
+    # let name: cstring = "tuong"
+    # let status = XFetchName(display, window, addr name)
+    # if status != 0:
+    #     echo name
+    # else:
+    #     echo "Failed"
+
     const width = 1600
     const height = 900
     init_window(width, height, "Voronoi")
@@ -58,6 +73,7 @@ when isMainModule:
     set_shader_value_v(shader, voronoi_points_color_uniform_location, pointer(addr points_color[0]), SHADER_UNIFORM_VEC4, voronoi_point_count)
 
     trace_log(LOG_INFO, "Point count %d", voronoi_point_count)
+    trace_log(LOG_INFO, "Size of Vector2 %d", sizeof(Vector2))
 
     while not window_should_close():
         begin_drawing()
@@ -81,5 +97,4 @@ when isMainModule:
         for i in 0..<voronoi_point_count:
             draw_circle_v(points[i], 5.0f, BLACK)
         end_drawing()
-
     close_window()
