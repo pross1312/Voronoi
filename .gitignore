@@ -2,6 +2,7 @@
 !*/
 !**/*.nim
 !.gitignore
+!README.md
 !*.nimble
 !*.c
 !**/*.c
