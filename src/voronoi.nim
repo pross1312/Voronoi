@@ -84,6 +84,7 @@ when isMainModule:
     # else:
     #     echo "Failed"
 
+    # TODO: How to not create a window
     init_window(scr.width, scr.height, "Voronoi")
     set_target_fps(30)
 

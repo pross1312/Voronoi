@@ -5,7 +5,7 @@ author        = "pross1312"
 description   = "Voronoi in nim"
 license       = "MIT"
 srcDir        = "src"
-bin           = @["voronoi", "x11"]
+bin           = @["voronoi"]
 
 
 # Dependencies
