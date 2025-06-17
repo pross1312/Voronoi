@@ -1,4 +1,7 @@
-voronoi
-voronoi_c
-/voronoi.c
-Makefile.temp
+*
+!*/
+!**/*.nim
+!.gitignore
+!*.nimble
+!*.c
+!**/*.c
