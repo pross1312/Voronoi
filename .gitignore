@@ -1,6 +1,7 @@
 *
 !*/
 !**/*.nim
+!**/*.png
 !.gitignore
 !README.md
 !*.nimble
