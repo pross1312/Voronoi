@@ -113,38 +113,15 @@ when isMainModule:
     #     Vector2(x: get_screen_width()/2.0 + get_screen_width()/4.0f, y: get_screen_height()/2.0f - get_screen_height()/4.0f),
     #     Vector2(x: float(get_mouse_x()), y: float(get_mouse_y())),
     # ]
-    var points = @[
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-        Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))),
-    ]
+    const point_count = 10
 
+    var points: seq[Vector2] = @[];
     var velocity: seq[Vector2] = @[]
     var points_color: seq[Vector4] = @[]
-    for i in 0..<len(points):
+    for i in 0..<point_count:
+        points.add(Vector2(x: rand(r, cfloat(scr.width)), y: rand(r, cfloat(scr.height))));
         velocity.add(Vector2(x: rand(r, vel), y: rand(r, vel)))
         points_color.add(color_to_vec4(color_from_hsv(hue, saturation, rand(r, 1.0))))
-
-    assert(len(points) == len(velocity))
-    assert(len(points) == len(points_color))
-    # echo points.repr
-    # echo points_color.repr
 
     let voronoi_point_count = cint(len(points))
     set_shader_value(shader, voronoi_point_count_uniform_location, pointer(addr voronoi_point_count), SHADER_UNIFORM_INT)
